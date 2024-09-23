@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class movingForward : MonoBehaviour
 {
-    public float speed = 40;
+    public float speed = 50;
     public Rigidbody2D _rb;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +20,14 @@ public class movingForward : MonoBehaviour
     void OnBecameInvisible()
     {
         Destroy(gameObject);
+    }
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject)
+        {
+            Destroy(gameObject);
+            Debug.Log("hit");
+        }
     }
 }
 
