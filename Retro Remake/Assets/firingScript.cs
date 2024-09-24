@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class firingScript : MonoBehaviour
 {
-    public float speed;
     public Transform spawnpos;
     public GameObject bulletPrefab;
     private Rigidbody2D _rb;

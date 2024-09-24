@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -844755547774032414}
   - component: {fileID: 760719712}
   - component: {fileID: 5135308904459988335}
+  - component: {fileID: -6870659133269331130}
   m_Layer: 0
   m_Name: Enemy Plane
   m_TagString: Untagged
@@ -171,6 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   speed: 7
+  pos: {fileID: 0}
 --- !u!114 &760719712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,6 +188,8 @@ MonoBehaviour:
   speed: 0
   spawnpos: {fileID: 0}
   planePrefab: {fileID: 5595869606372157395}
+  depth: 0
+  bombDrop: 0
 --- !u!114 &5135308904459988335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,3 +203,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 0
+--- !u!114 &-6870659133269331130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5595869606372157395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a48479869a7ad4199236f20c4a7bd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pos: {fileID: 5595869606372157401}
+  bombGameObject: {fileID: 8500721934299076371, guid: 350adf954c0722e44a628d350666361b, type: 3}

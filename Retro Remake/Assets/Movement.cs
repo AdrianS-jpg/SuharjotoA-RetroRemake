@@ -5,7 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public KeyCode left = KeyCode.A, right = KeyCode.D, up = KeyCode.W, down = KeyCode.S;
-    public float speed = 40;
+    public float speed = 100;
     public Animator animator;
     // Start is called before the first frame update
 
