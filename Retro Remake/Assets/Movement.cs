@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public KeyCode left = KeyCode.A, right = KeyCode.D, up = KeyCode.W, down = KeyCode.S;
-    public float speed = 100;
+    public KeyCode left = KeyCode.LeftArrow, right = KeyCode.RightArrow, up = KeyCode.UpArrow, down = KeyCode.DownArrow;
+    private float speed = 200;
     public Animator animator;
     // Start is called before the first frame update
 
     private Rigidbody2D _rb;
     void Start()
     {
-        _rb = GetComponent<Rigidbody2D>(); 
+        _rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -42,11 +43,14 @@ public class Movement : MonoBehaviour
             // Get the Rigidbody2D component and set its velocity to the down at the given speed
             _rb.AddForce(Vector2.down * speed);
         }
-        if (Input.GetKey(KeyCode.G))
+
+        
+    }
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.name == "Bomb(Clone)")
         {
             animator.SetTrigger("Hit");
-
         }
-
     }
 }

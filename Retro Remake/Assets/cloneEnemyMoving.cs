@@ -9,12 +9,12 @@ public class cloneEnemyMoving : MonoBehaviour
     public Animator animator;
     private Vector2 direction = Vector2.down;
     private Rigidbody2D _rb;
-    public float speed = 10;
+    private float speed = 15;
     public Transform pos;
+    public bool hit = false;
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("say cheese");
         _rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();  
         pos = GetComponent<Transform>();
@@ -24,19 +24,23 @@ public class cloneEnemyMoving : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (pos.position.y <= GameObject.Find("Bullet").GetComponent<enemyPlaneMovement>().depth)
+        if (hit == false)
         {
-           direction = Vector2.up;
-            Debug.Log("up");
-        }
-        _rb.velocity = direction * speed;
-
-        if (Input.GetKeyDown(KeyCode.L))
+            if (pos.position.y <= GameObject.Find("Bullet").GetComponent<enemyPlaneMovement>().depth)
+            {
+                direction = Vector2.up;
+            }
+            _rb.velocity = direction * speed;
+        } else
         {
-            animator.SetTrigger("Destroyed");
-            //Destroy(gameObject);
+            _rb.velocity = Vector2.zero;
         }
-        if (pos.position.y >= 35)
+        //if (Input.GetKeyDown(KeyCode.L))
+        //{
+        //    animator.SetTrigger("Destroyed");
+        //    //Destroy(gameObject);
+        //}
+        if (pos.position.y >= 31)
         {
             Destroy(gameObject);
         }
@@ -44,10 +48,11 @@ public class cloneEnemyMoving : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject)
+        if (coll.gameObject.name != "Bomb(Clone)")
         {
+            hit = true;
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
             animator.SetTrigger("Destroyed");
-            Debug.Log("hit");
         }
     }
 

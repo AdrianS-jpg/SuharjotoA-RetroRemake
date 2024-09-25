@@ -9,6 +9,7 @@ public class BombSpawn : MonoBehaviour
 {
     public Transform pos;
     public GameObject bombGameObject;
+    public bool once = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,9 +19,10 @@ public class BombSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (pos.position.y == GameObject.Find("Bullet").GetComponent<enemyPlaneMovement>().bombDrop)
+        if (pos.position.y <= GameObject.Find("Bullet").GetComponent<enemyPlaneMovement>().depth && once == false)
         {
-            Instantiate(bombGameObject, new Vector3(pos.position.x, pos.position.y + 5, 0), Quaternion.identity);    
+            Instantiate(bombGameObject, new Vector3(pos.position.x, pos.position.y - 3, 0), Quaternion.identity);
+            once = true;
         }
     }
 }

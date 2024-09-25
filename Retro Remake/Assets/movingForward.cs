@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 public class movingForward : MonoBehaviour
 {
@@ -23,10 +25,17 @@ public class movingForward : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject)
+        if (coll.gameObject.name == "Enemy Plane(Clone)")
         {
+            GameObject.Find("Bullet").GetComponent<firingScript>().score = GameObject.Find("Bullet").GetComponent<firingScript>().score + 50;
+            Debug.Log(GameObject.Find("Bullet").GetComponent<firingScript>().score);
             Destroy(gameObject);
-            Debug.Log("hit");
+        }
+        if (coll.gameObject.name == "Bomb(Clone)")
+        {
+            GameObject.Find("Bullet").GetComponent<firingScript>().score = GameObject.Find("Bullet").GetComponent<firingScript>().score + 25;
+            Debug.Log(GameObject.Find("Bullet").GetComponent<firingScript>().score);
+            Destroy(gameObject);
         }
     }
 }

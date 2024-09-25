@@ -105,13 +105,13 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 10000
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &5595869606372157404
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -171,8 +171,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  speed: 7
   pos: {fileID: 0}
+  hit: 0
 --- !u!114 &760719712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,6 +190,7 @@ MonoBehaviour:
   planePrefab: {fileID: 5595869606372157395}
   depth: 0
   bombDrop: 0
+  waveOne: 0
 --- !u!114 &5135308904459988335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,3 +218,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pos: {fileID: 5595869606372157401}
   bombGameObject: {fileID: 8500721934299076371, guid: 350adf954c0722e44a628d350666361b, type: 3}
+  once: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BombMovement : MonoBehaviour
 {
-    public float speed = 40;
+    public float speed = 10;
     private Rigidbody2D _rb;
     // Start is called before the first frame update
     void Start()
@@ -23,9 +23,9 @@ public class BombMovement : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject)
+        if (coll.gameObject.name != "Enemy Plane(Clone)")
         {
-            //Destroy(gameObject);
+            Destroy(gameObject);
             Debug.Log("hit");
         }
     }
