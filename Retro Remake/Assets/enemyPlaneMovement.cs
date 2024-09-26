@@ -1,8 +1,10 @@
+using Mono.Cecil.Cil;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+
 
 public class enemyPlaneMovement : MonoBehaviour
 {
@@ -13,95 +15,54 @@ public class enemyPlaneMovement : MonoBehaviour
     private Rigidbody2D _rb;
     public float depth = 0;
     public float bombDrop = 0;
-    public bool waveOne = false;
+    private bool waveOne = true;
+    List<int> xValues = new List<int>();
+    public int equals = 0;
+    private bool notStacking = false;
+    public int xTest = 0;
+    public float frame = 180f;
     // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         targetTime = 180.0f;
-}
+    }
 
     // Update is called once per frame
     void Update()
-    {
+    { 
         targetTime -= Time.deltaTime;
-        //Debug.Log(targetTime);
+        //testing stuff for random planes
+        if (waveOne == false)
+        {
+            Debug.Log(waveOne);
+            waveOne = true;
+            Debug.Log("it works earlier");
+            for (int i = 0; i < UnityEngine.Random.Range(2, 6); i++)
+            {
+                notStacking = false;
+                xValues.Add(UnityEngine.Random.Range(-40, 40));
+                xTest = xValues[i];
+                check(xValues[i]);
+                while (notStacking == false)
+                {
+                    xValues.RemoveAt(i);
+                    xValues.Add(UnityEngine.Random.Range(-40, 40));
+                    equals = 0;
+                    check(xValues[i]);
+                }
+                instantiate(xValues[i], 30, 0, 0, 0);
+            }
+            Debug.Log(xValues.Count);
+            xValues.Clear();
 
-        if (targetTime <= 176f && targetTime >= 175f && waveOne == false)
-        {
-            instantiate(-20, 30, 0, 0, 0);
-            instantiate(-10, 30, 0, 0, 0);
-            instantiate(0, 30, 0, 0, 0);
-            waveOne = true;
+            
         }
-        if (targetTime <= 174f && targetTime >= 173f)
+        if (targetTime <= frame && targetTime >= frame - 1f && waveOne == true)
         {
             waveOne = false;
-        }
-        if (targetTime <= 172f && targetTime >= 171f && waveOne == false)
-        {
-            instantiate(-10, 30, 0, 10, 10);
-            instantiate(0, 30, 0, 10, 10);
-            instantiate(10, 30, 0, 10, 10);
-            waveOne = true;
-        }
-        if (targetTime <= 170f && targetTime >= 169f)
-        {
-            waveOne = false;
-        }
-        if (targetTime <= 168f && targetTime >= 167f && waveOne == false)
-        {
-            instantiate(0, 30, 0, -5, -5);
-            instantiate(10, 30, 0, -5, -5);
-            instantiate(20, 30, 0, -5, -5);
-            waveOne = true;
-        }
-        if (targetTime <= 166f && targetTime >= 165f)
-        {
-            waveOne = false;
-        }
-        if (targetTime <= 164f && targetTime >= 163f && waveOne == false)
-        {
-            instantiate(30, 28, 0, 2, 2);
-            instantiate(40, 30, 0, 0, 0);
-            waveOne = true;
-        }
-        if (targetTime <= 162f && targetTime >= 161f)
-        {
-            waveOne = false;
-        }
-        if (targetTime <= 160f && targetTime >= 159f && waveOne == false)
-        {
-            instantiate(20, 28, 0, -5, 0);
-            instantiate(-10, 30, 0, -5, 0);
-            instantiate(0, 29, 0, -5, 0);
-            waveOne = true;
-        }
-        if (targetTime <= 158f && targetTime >= 157f)
-        {
-            waveOne = false;
-        }
-        if (targetTime <= 156f && targetTime >= 155f && waveOne == false)
-        {
-            instantiate(-30, 28, 0, -5, 0);
-            instantiate(-20, 30, 0, -5, 0);
-            instantiate(-25, 30, 0, -5, 0);
-            waveOne = true;
-        }
-        if (targetTime <= 154f && targetTime >= 153f)
-        {
-            waveOne = false;
-        }
-        if (targetTime <= 153f && targetTime >= 152f && waveOne == false)
-        {
-            instantiate(-15, 30, 0, 0, 0);
-            instantiate(-10, 28, 0, -5, 0);
-            instantiate(0, 26, 0, 5, 0);
-            waveOne = true;
-        }
-        if (targetTime <= 151f && targetTime >= 150f)
-        {
-            waveOne = false;
+            frame = frame - 4f;
+            Debug.Log(frame);
         }
         //Instantiate(planePrefab, new Vector3(spawnpos.position.x, spawnpos.position.y + 3, 0), quaternion.identity);
         if (targetTime <= 168.0f && targetTime >= 167.998f)
@@ -115,5 +76,26 @@ public class enemyPlaneMovement : MonoBehaviour
         depth = d;
         bombDrop = b;
 
+    }
+    void check(int i)
+    {
+        foreach (int y in xValues)
+        {
+            if (i == y)
+            {
+                
+                equals++;
+                if (equals == 2)
+                {
+                    notStacking = false;
+                    Debug.Log("failed");
+                    return;
+                }
+            }
+
+        }
+        equals = 0;
+        notStacking = true;
+        return;
     }
 }

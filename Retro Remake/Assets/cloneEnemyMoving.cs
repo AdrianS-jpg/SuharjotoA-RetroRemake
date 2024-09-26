@@ -55,6 +55,11 @@ public class cloneEnemyMoving : MonoBehaviour
             animator.SetTrigger("Destroyed");
         }
     }
+    void OnBecameInvisible()
+    {
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        Destroy(gameObject);
+    }
 
 
 }

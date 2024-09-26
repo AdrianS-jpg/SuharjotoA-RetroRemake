@@ -52,5 +52,9 @@ public class Movement : MonoBehaviour
         {
             animator.SetTrigger("Hit");
         }
+        if (coll.gameObject.name == "Enemy Plane(Clone)")
+        {
+            animator.SetTrigger("Death");
+        }
     }
 }
