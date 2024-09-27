@@ -44,7 +44,9 @@ public class cloneEnemyMoving : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        if (GameObject.Find("Plane").GetComponent<Movement>().planeHit == true) {
+            _rb.velocity = Vector2.zero;
+        }
     }
     void OnCollisionEnter2D(Collision2D coll)
     {

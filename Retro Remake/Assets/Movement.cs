@@ -7,6 +7,7 @@ public class Movement : MonoBehaviour
     public KeyCode left = KeyCode.LeftArrow, right = KeyCode.RightArrow, up = KeyCode.UpArrow, down = KeyCode.DownArrow;
     private float speed = 200;
     public Animator animator;
+    public bool planeHit = false;
     // Start is called before the first frame update
 
     private Rigidbody2D _rb;
@@ -54,6 +55,7 @@ public class Movement : MonoBehaviour
         }
         if (coll.gameObject.name == "Enemy Plane(Clone)")
         {
+            planeHit = true;
             animator.SetTrigger("Death");
         }
     }
