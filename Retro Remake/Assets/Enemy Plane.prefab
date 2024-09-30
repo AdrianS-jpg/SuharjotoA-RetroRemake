@@ -192,7 +192,7 @@ MonoBehaviour:
   bombDrop: 0
   equals: 0
   xTest: 0
-  frame: 174
+  frame: 176
 --- !u!114 &5135308904459988335
 MonoBehaviour:
   m_ObjectHideFlags: 0

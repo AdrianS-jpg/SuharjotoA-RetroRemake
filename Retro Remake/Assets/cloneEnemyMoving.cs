@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using UnityEditor.XR;
 using UnityEngine;
 
 public class cloneEnemyMoving : MonoBehaviour
@@ -12,6 +13,7 @@ public class cloneEnemyMoving : MonoBehaviour
     private float speed = 15;
     public Transform pos;
     public bool hit = false;
+    public bool stop = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,28 +26,34 @@ public class cloneEnemyMoving : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hit == false)
+        if (stop == false)
         {
-            if (pos.position.y <= GameObject.Find("Bullet").GetComponent<enemyPlaneMovement>().depth)
+            if (hit == false)
             {
-                direction = Vector2.up;
+                if (pos.position.y <= GameObject.Find("Bullet").GetComponent<enemyPlaneMovement>().depth)
+                {
+                    direction = Vector2.up;
+                }
+                _rb.velocity = direction * speed;
             }
-            _rb.velocity = direction * speed;
-        } else
-        {
-            _rb.velocity = Vector2.zero;
-        }
-        //if (Input.GetKeyDown(KeyCode.L))
-        //{
-        //    animator.SetTrigger("Destroyed");
-        //    //Destroy(gameObject);
-        //}
-        if (pos.position.y >= 31)
-        {
-            Destroy(gameObject);
-        }
-        if (GameObject.Find("Plane").GetComponent<Movement>().planeHit == true) {
-            _rb.velocity = Vector2.zero;
+            else
+            {
+                _rb.velocity = Vector2.zero;
+            }
+            //if (Input.GetKeyDown(KeyCode.L))
+            //{
+            //    animator.SetTrigger("Destroyed");
+            //    //Destroy(gameObject);
+            //}
+            if (pos.position.y >= 31)
+            {
+                Destroy(gameObject);
+            }
+            if (GameObject.Find("Plane").GetComponent<Movement>().planeHit == true)
+            {
+                stop = true;
+                _rb.velocity = Vector2.zero;
+            }
         }
     }
     void OnCollisionEnter2D(Collision2D coll)

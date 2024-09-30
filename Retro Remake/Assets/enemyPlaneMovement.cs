@@ -33,41 +33,39 @@ public class enemyPlaneMovement : MonoBehaviour
     { 
         targetTime -= Time.deltaTime;
         //testing stuff for random planes
-        if (waveOne == false)
+        if (GameObject.Find("Plane").GetComponent<Movement>().planeHit == false)
         {
-            Debug.Log(waveOne);
-            waveOne = true;
-            Debug.Log("it works earlier");
-            for (int i = 0; i < UnityEngine.Random.Range(2, 6); i++)
+            if (waveOne == false)
             {
-                notStacking = false;
-                xValues.Add(UnityEngine.Random.Range(-40, 40));
-                xTest = xValues[i];
-                check(xValues[i]);
-                while (notStacking == false)
+                Debug.Log(waveOne);
+                waveOne = true;
+                Debug.Log("it works earlier");
+                for (int i = 0; i < UnityEngine.Random.Range(2, 6); i++)
                 {
-                    xValues.RemoveAt(i);
+                    notStacking = false;
                     xValues.Add(UnityEngine.Random.Range(-40, 40));
-                    equals = 0;
+                    xTest = xValues[i];
                     check(xValues[i]);
+                    while (notStacking == false)
+                    {
+                        xValues.RemoveAt(i);
+                        xValues.Add(UnityEngine.Random.Range(-40, 40));
+                        equals = 0;
+                        check(xValues[i]);
+                    }
+                    instantiate(xValues[i], 30, 0, 0, 0);
                 }
-                instantiate(xValues[i], 30, 0, 0, 0);
+                Debug.Log(xValues.Count);
+                xValues.Clear();
+
+
             }
-            Debug.Log(xValues.Count);
-            xValues.Clear();
-
-            
-        }
-        if (targetTime <= frame && targetTime >= frame - 1f && waveOne == true)
-        {
-            waveOne = false;
-            frame = frame - 4f;
-            Debug.Log(frame);
-        }
-        //Instantiate(planePrefab, new Vector3(spawnpos.position.x, spawnpos.position.y + 3, 0), quaternion.identity);
-        if (targetTime <= 168.0f && targetTime >= 167.998f)
-        {
-
+            if (targetTime <= frame && targetTime >= frame - 1f && waveOne == true)
+            {
+                waveOne = false;
+                frame = frame - 4f;
+                Debug.Log(frame);
+            }
         }
     }
     void instantiate(float x, float y, float z, float d, float b)

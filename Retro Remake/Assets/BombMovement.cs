@@ -15,7 +15,10 @@ public class BombMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _rb.velocity = Vector2.down * speed;
+        if (GameObject.Find("Plane").GetComponent<Movement>().planeHit == false)
+        {
+            _rb.velocity = Vector2.down * speed;
+        }
     }
     void OnBecameInvisible()
     {
