@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class enemyPlaneMovement : MonoBehaviour
@@ -20,12 +21,12 @@ public class enemyPlaneMovement : MonoBehaviour
     public int equals = 0;
     private bool notStacking = false;
     public int xTest = 0;
-    public float frame = 180f;
+    public float frame = 90f;
     // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        targetTime = 180.0f;
+        targetTime = 90.0f;
     }
 
     // Update is called once per frame
@@ -66,6 +67,10 @@ public class enemyPlaneMovement : MonoBehaviour
                 frame = frame - 4f;
                 Debug.Log(frame);
             }
+        }
+        if (targetTime <= 0)
+        {
+            SceneManager.LoadScene("Ending");
         }
     }
     void instantiate(float x, float y, float z, float d, float b)

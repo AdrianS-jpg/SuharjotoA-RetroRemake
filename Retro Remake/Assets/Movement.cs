@@ -6,7 +6,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public KeyCode left = KeyCode.LeftArrow, right = KeyCode.RightArrow, up = KeyCode.UpArrow, down = KeyCode.DownArrow;
-    private float speed = 100;
+    public float speed = 70;
     public Animator animator;
     public bool planeHit = false;
     public bool dead = false;
@@ -64,6 +64,7 @@ public class Movement : MonoBehaviour
     {
         if (coll.gameObject.name == "Bomb(Clone)")
         {
+            GameObject.Find("Bullet").GetComponent<firingScript>().score = GameObject.Find("Bullet").GetComponent<firingScript>().score - 50;
             animator.SetTrigger("Hit");
         }
         if (coll.gameObject.name == "Enemy Plane(Clone)")

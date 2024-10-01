@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class firingScript : MonoBehaviour
 {
-    public int score;
+    public int score = 0;
     public Transform spawnpos;
     public GameObject bulletPrefab;
     private Rigidbody2D _rb;
