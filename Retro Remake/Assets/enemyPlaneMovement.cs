@@ -10,7 +10,6 @@ using UnityEngine.SceneManagement;
 public class enemyPlaneMovement : MonoBehaviour
 {
     private float targetTime;
-    public float speed;
     public Transform spawnpos;
     public GameObject planePrefab;
     private Rigidbody2D _rb;
@@ -21,18 +20,21 @@ public class enemyPlaneMovement : MonoBehaviour
     public int equals = 0;
     private bool notStacking = false;
     public int xTest = 0;
-    public float frame = 90f;
+    private float frame = 174f;
     // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        targetTime = 90.0f;
+        targetTime = 180.0f;
+        Debug.Log(frame);
     }
 
     // Update is called once per frame
     void Update()
     { 
         targetTime -= Time.deltaTime;
+        Debug.Log(targetTime);
+        Debug.Log(frame);
         //testing stuff for random planes
         if (GameObject.Find("Plane").GetComponent<Movement>().planeHit == false)
         {

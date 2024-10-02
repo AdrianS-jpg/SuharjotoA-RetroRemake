@@ -2,7 +2,6 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
-using UnityEditor.XR;
 using UnityEngine;
 
 public class cloneEnemyMoving : MonoBehaviour
@@ -58,7 +57,7 @@ public class cloneEnemyMoving : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.name != "Bomb(Clone)")
+        if (coll.gameObject.name != "Bomb(Clone)" && coll.gameObject.name != "Enemy Plane(Clone)")
         {
             hit = true;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;

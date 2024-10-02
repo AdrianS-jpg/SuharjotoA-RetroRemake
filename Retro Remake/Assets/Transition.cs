@@ -38,5 +38,4 @@ public class Transition : MonoBehaviour
         animator.SetTrigger("Buttons");
         gameObject.GetComponent<TextMeshPro>().color = Color.white;
     }
-    public void 
 }

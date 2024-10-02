@@ -173,6 +173,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   pos: {fileID: 0}
   hit: 0
+  stop: 0
 --- !u!114 &760719712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,14 +186,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9bd988cde4120641ac44c34391ec963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
   spawnpos: {fileID: 0}
   planePrefab: {fileID: 5595869606372157395}
   depth: 0
   bombDrop: 0
   equals: 0
   xTest: 0
-  frame: 176
+  frame: 86
 --- !u!114 &5135308904459988335
 MonoBehaviour:
   m_ObjectHideFlags: 0

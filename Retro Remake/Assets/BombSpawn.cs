@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using Unity.Mathematics;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class BombSpawn : MonoBehaviour
 {
